@@ -1,54 +1,61 @@
 import java.util.Scanner;
 
-public class Drivinglesson {
+public class Assignment2 {
 
     static Scanner scan = new Scanner(System.in);
+    static final int targetWeight = 150;
 
     public static void main(String[] args) throws Exception {
 
-        Drive("student");
+        System.out.print("Enter current weight in lbs: ");
+        int weight = scan.nextInt();
+
+        if (weight > 150) {
+            
+            loseWeight(weight);
+        } else {
+            System.out.println("Current weight must be greater than 150 lbs!");
+        }
         scan.close();
     }
 
-    static void Drive(String driver) {
+    static void loseWeight(int currentWeight) {
 
-        System.out.println("The " + driver + " is taking the test... ");
-        taste(driver);
+        System.out.println("Eating right!");
+        System.out.println("Doing exercises!");
 
-        String feedback = getFeedBack(driver);
+        currentWeight = checkWeight(currentWeight);
 
-        // Define the base case / stopping condition
-        if (feedback.equals("no")) {
-
-            // Do something to reach the goal
-            Addskill(driver);
-
-            // Recursive call
-            Drive(driver);
-        } else if (feedback.equals("yes")) {
-            Givelisence(driver);
+        // Define the base case by using an if condition. The target weight is 150 lbs
+        // Do something to reach the target. Call the fixDietandExercise() method
+        // Do the recursive call. Call the loseWeight() method
+      
+        // if the target weight has been reached, print the code below.
+        // System.out.println("I have reached my target weight!");
+        
+        
+        //Base case
+        if (currentWeight > 150) {
+            currentWeight = fixDietandExercise(currentWeight);
+            loseWeight(currentWeight);
+        } 
+        else if(currentWeight == 150){
+            System.out.println("I have reached my target weight!");
         }
     }
 
-    static void taste(String driver) {
-        System.out.println("Checking performance");
+    static int checkWeight(int weight) {
+        System.out.println("My current weight is: " + weight + "lbs");
+        return weight;
     }
 
-    static String getFeedBack(String driver) {
-        System.out.println("Is the " + driver + " is good at driving? (Enter \"yes\" or \"no\")");
+    static int fixDietandExercise(int weight) {
 
-        String feedback = scan.next();
+        System.out.println("Fixing Diet and Exercise!");
+        System.out.print("Enter weight lost in lbs: ");
+        int weightlost = scan.nextInt();
 
-        return feedback;
-    }
-
-    static void Addskill(String driver) {
-        System.out.print("Give other skills to " + driver + ": ");
-        String skill = scan.next();
-        System.out.println("Adding skills. taking " + skill + " test...");
-    }
-
-    static void Givelisence(String driver) {
-        System.out.println("Give the lisence to " + driver + ".");
+        int currentWeight = weight - weightlost;
+        return currentWeight;
     }
 }
